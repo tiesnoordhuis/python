@@ -48,9 +48,18 @@ def not_bad(s):
 #  a-front + b-front + a-back + b-back
 def front_back(a, b):
   if len(a[:len(a)//2]) == len(a[len(a)//2:]):
-    return a[:-len(a)//2] + b[:-len(b)//2] + a[-len(a)//2:] + b[-len(b)//2:]
+    aFront = a[:len(a)//2]
+    aBack = a[len(a)//2:]
   else:
-    return a[:(len(a)//2)+1] + b[:(len(b)//2)+1] + a[(len(a)//2)-1:] + b[(len(b)//2)-1:]
+    aFront = a[:((len(a)//2)+1)]
+    aBack = a[((len(a)//2)+1):]
+  if len(b[:len(b)//2]) == len(b[len(b)//2:]):
+    bFront = b[:len(b)//2]
+    bBack = b[len(b)//2:]
+  else:
+    bFront = b[:((len(b)//2)+1)]
+    bBack = b[((len(b)//2)+1):]
+  return aFront + bFront + aBack + bBack
 
 # Simple provided test() function used in main() to print
 # what each function returns vs. what it's supposed to return.
