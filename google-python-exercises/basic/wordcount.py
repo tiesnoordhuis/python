@@ -1,3 +1,4 @@
+
 #!/usr/bin/python -tt
 # Copyright 2010 Google Inc.
 # Licensed under the Apache License, Version 2.0
@@ -39,6 +40,47 @@ print_words() and print_top().
 
 import sys
 
+def sortFun(key):
+  f = open(sys.argv[2], "rU")
+  dict = {}
+  for line in f:
+    for word in line.split():
+      lword = word.lower()
+      if lword in dict:
+        dict[lword] += 1
+      else:
+        dict[lword] = 1
+  return dict[key]
+
+
+def print_words(filename):
+  f = open(filename, "rU")
+  dict = {}
+  for line in f:
+    for word in line.split():
+      lword = word.lower()
+      if lword in dict:
+        dict[lword] += 1
+      else:
+        dict[lword] = 1
+  for key in sorted(dict.keys()):
+    print key, dict[key]
+
+def print_top(filename):
+  f = open(filename, "rU")
+  dict = {}
+  for line in f:
+    for word in line.split():
+      lword = word.lower()
+      if lword in dict:
+        dict[lword] += 1
+      else:
+        dict[lword] = 1
+  dicts = sorted(dict, key=sortFun, reverse=True)
+  for i in range(len(dicts)):
+    if i > 20:
+      return
+    print dicts[i], dict[dicts[i]]
 # +++your code here+++
 # Define print_words(filename) and print_top(filename) functions.
 # You could write a helper utility function that reads a file
